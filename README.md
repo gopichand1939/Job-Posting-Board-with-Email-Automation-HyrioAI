@@ -256,4 +256,4 @@ All endpoints have now been tested:
 /api/auth/logout – Logout ✅    
 
 
-![image](https://github.com/user-attachments/assets/da78d4e8-8c49-4bc6-b819-d7f9bcb7c4d0)
+![image](https://github.com/user-attachments/assets/da78d4e8-8c49-4bc6-b819-d7f9bcb7c4d0)  ..
