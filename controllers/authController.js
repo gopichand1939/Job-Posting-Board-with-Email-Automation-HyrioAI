@@ -46,13 +46,13 @@ const registerUser = async (req, res) => {
       },
     });
 
-    const mailOptions = {
+ const mailOptions = {
       from: process.env.EMAIL_USER,
       to: email,
       subject: "Verify your email",
       html: `<h2>Welcome, ${name}!</h2>
              <p>Please verify your email by clicking the link below:</p>
-             <a href="http://localhost:5000/api/auth/verify/${verificationToken}">Verify Email</a>`,
+             <a href="https://job-posting-board-with-email-automation.onrender.com/api/auth/verify/${verificationToken}">Verify Email</a>`,
     };
 
     await transporter.sendMail(mailOptions);
