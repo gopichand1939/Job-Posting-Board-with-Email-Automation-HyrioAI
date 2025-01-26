@@ -14,11 +14,17 @@ const app = express();
 // Middleware
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors());
+app.use(
+  cors({
+    origin: "http://localhost:3000", // Allow requests from your frontend
+    credentials: true, // Allow cookies and credentials
+  })
+);
 app.use(morgan("dev"));
+
+// Routes
 app.use("/api/auth", authRoutes);
 app.use("/api/jobs", authenticateUser, jobRoutes);
-
 
 // Root Route
 app.get("/", (req, res) => {
@@ -30,12 +36,13 @@ app.get("/health", (req, res) => {
   res.status(200).json({ status: "OK", message: "Server is running smoothly" });
 });
 
-// MongoDB Connection
+// Start the Server
 const PORT = process.env.PORT || 5000;
-const MONGO_URI = process.env.MONGO_URI;
-
 mongoose
-  .connect(MONGO_URI)
+  .connect(process.env.MONGO_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
   .then(() => {
     console.log("Connected to MongoDB");
     app.listen(PORT, () => {
@@ -43,5 +50,5 @@ mongoose
     });
   })
   .catch((err) => {
-    console.error("MongoDB connection error:", err);
+    console.error("Database connection error:", err);
   });
