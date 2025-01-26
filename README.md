@@ -257,3 +257,154 @@ All endpoints have now been tested:
 
 
 ![image](https://github.com/user-attachments/assets/da78d4e8-8c49-4bc6-b819-d7f9bcb7c4d0)  ..
+
+
+
+Deployed backend link
+
+https://job-posting-board-with-email-automation.onrender.com
+
+Register a New User
+
+POST
+
+https://job-posting-board-with-email-automation.onrender.com/api/auth/register
+
+{
+"name": "Aman",
+"email": "a9704156957@gmail.com",
+"password": "aman123",
+"mobile": "9100388005"
+}
+
+Verify the Email
+GET
+https://job-posting-board-with-email-automation.onrender.com/api/auth/verify/<your-token>
+
+Login as the Registered User
+POST
+
+https://job-posting-board-with-email-automation.onrender.com/api/auth/login
+
+{
+"email": "a9704156957@gmail.com",
+"password": "aman123"
+}
+
+Post a Job
+POST
+https://job-posting-board-with-email-automation.onrender.com/api/jobs
+
+Headers:
+Content-Type: application/json
+Authorization: Bearer <your-token> (Token received after logging in)
+
+{
+"jobTitle": "Software Engineer",
+"jobDescription": "Responsible for building and maintaining applications.",
+"experienceLevel": "BEGINNER",
+"candidates": ["r27119226@gmail.com", "gopichandbullayya@gmail.com"],
+"endDate": "2025-02-01"
+}
+
+Send Email Notifications to Candidates
+
+URL:
+Use the jobId from the response of the job posting step: POST https://job-posting-board-with-email-automation.onrender.com/api/jobs/<jobId>/notify
+Headers:
+Content-Type: application/json
+Authorization: Bearer <your-token>
+Response:
+A success message indicating emails have been sent.
+
+Retrieve All Jobs
+URL:
+GET https://job-posting-board-with-email-automation.onrender.com/api/jobs
+Headers:
+Authorization: Bearer <your-token>
+
+Logout Endpoint
+
+Request Details
+URL:
+POST https://job-posting-board-with-email-automation.onrender.com/api/auth/logout
+Headers:
+Authorization: Bearer <your-token> (Token received after logging in)
+
+{
+"message": "Logout successful"
+}
+
+Logout Does
+Clears the JWT token from the user session.
+Prevents access to protected routes until the user logs in again.
+
+Outcome of Backend Development
+Project Title:
+Job Posting Board with Email Automation
+
+Functional Achievements
+User Registration (Company):
+
+Companies can register by providing:
+Name
+Email
+Password
+Mobile number
+Email verification implemented to activate accounts.
+Outcome: Verified users can post jobs.
+Company Login:
+
+Secure login using email and password.
+JWT-based authentication (Bearer tokens) implemented.
+Outcome: Users can securely log in to access protected endpoints.
+Job Posting:
+
+Authenticated companies can:
+Post jobs with title, description, experience level, end date, and candidate email IDs.
+Example: "Software Engineer" for BEGINNER level.
+Outcome: Jobs are successfully created and stored in the database.
+Candidate Email Automation:
+
+Companies can notify candidates via email for job postings.
+Nodemailer used to send job-related emails containing:
+Job details.
+Sender information.
+Outcome: Emails successfully delivered to specified candidates.
+Logout Functionality:
+
+Users can log out to invalidate their session.
+Outcome: Secure token clearance to prevent unauthorized access.
+Protected Routes:
+
+Middleware implemented to ensure only authenticated users can access job-related routes.
+Outcome: Security enhanced with token-based access control.
+End-to-End Flow Tested
+From Registration to Logout, all endpoints tested successfully:
+User Registration: POST /api/auth/register
+Email Verification: GET /api/auth/verify/:token
+Login: POST /api/auth/login
+Job Posting: POST /api/jobs
+Retrieve Jobs: GET /api/jobs
+Email Notifications: POST /api/jobs/:jobId/notify
+Logout: POST /api/auth/logout
+Deployment
+Platform: Render.com
+Live URL: https://job-posting-board-with-email-automation.onrender.com/ Job Posting Board with Email Automation
+Environment variables configured for:
+MongoDB Atlas connection.
+JWT secret.
+Email credentials.
+Technologies Used
+Backend: Node.js (Express.js framework).
+Database: MongoDB Atlas.
+Authentication: JWT for secure login.
+Email Automation: Nodemailer.
+Deployment: Render.com (Free tier).
+Outcome Summary
+A fully functional backend for a job posting and email notification system.
+100% tested endpoints, ensuring reliability and security.
+Successfully deployed and accessible via a live URL.
+
+...
+
