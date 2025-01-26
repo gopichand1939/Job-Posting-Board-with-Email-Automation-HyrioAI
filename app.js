@@ -38,11 +38,10 @@ app.get("/health", (req, res) => {
 
 // Start the Server
 const PORT = process.env.PORT || 5000;
+
+// Updated MongoDB Connection (Removed Deprecated Options)
 mongoose
-  .connect(process.env.MONGO_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
+  .connect(process.env.MONGO_URI) // Simplified connection without deprecated options
   .then(() => {
     console.log("Connected to MongoDB");
     app.listen(PORT, () => {
