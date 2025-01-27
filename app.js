@@ -16,7 +16,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(
   cors({
-    origin: "http://localhost:3000", // Allow requests from your frontend
+    origin: "https://job-posting-board-with-email-automation-frontend-hyrio-ai.vercel.app", // Frontend URL
     credentials: true, // Allow cookies and credentials
   })
 );
@@ -39,9 +39,9 @@ app.get("/health", (req, res) => {
 // Start the Server
 const PORT = process.env.PORT || 5000;
 
-// Updated MongoDB Connection (Removed Deprecated Options)
+// MongoDB Connection
 mongoose
-  .connect(process.env.MONGO_URI) // Simplified connection without deprecated options
+  .connect(process.env.MONGO_URI)
   .then(() => {
     console.log("Connected to MongoDB");
     app.listen(PORT, () => {
@@ -51,3 +51,4 @@ mongoose
   .catch((err) => {
     console.error("Database connection error:", err);
   });
+
